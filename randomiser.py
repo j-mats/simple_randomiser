@@ -17,7 +17,7 @@ def randomiser(n, data):
     random_values_array : array 
         Output of all the randomly generated integer values in an array.
 
-    Created by: J. Mathews
+    Created by: Job M
     """
     if n > 0:
         random_values_array = np.zeros(n)
@@ -36,5 +36,3 @@ def randomiser(n, data):
             element_length = element_length
             
     return np.int32(random_values_array)
-
-# Glenn Test code change 1
