@@ -8,7 +8,7 @@ def randomiser(n, data):
     ----------
     n : int
         The number of random values to be generated.
-
+    
     data : array
         The dataset from which the random values are generated.
 
@@ -19,20 +19,26 @@ def randomiser(n, data):
 
     Created by: Job M
     """
+
+    if n > len(set(data)): 
+        raise ValueError("'n' exceeds the number of unique values in dataset")
+    
     if n > 0:
         random_values_array = np.zeros(n)
     elif n <= 0:
         raise ValueError("'n' should be non-zero and non-negative integer")
     
-    repeat_checker = []
+    repeat_checker = set()
     element_length = 0
+    counter = 0 
     while element_length < n:
         r = np.random.randint(len(data)) #random state
-        if r not in repeat_checker:
+        if data[r] not in repeat_checker:
             random_values_array[element_length] = data[r]
-            repeat_checker.append(r)
+            repeat_checker.add(data[r])
             element_length += 1
         else:
-            element_length = element_length
+            if counter > 100: raise RecursionError('Recursion limit (100 iterations) exceeded')
+            counter += 1
             
     return np.int32(random_values_array)
